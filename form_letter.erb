@@ -18,7 +18,7 @@
         <% legislators.each do |legislator| %>
         <tr>
           <td><%= "#{legislator.name}" %></td>
-          <td><%= "#{legislator.urls.join(" ")}" unless legislator.urls.nil? %></td>
+          <td><a href=<%= "#{legislator.urls.join(" ")}" unless legislator.urls.nil? %>> Click Here </a></td>
         </tr>
         <% end %>
     <% else %>

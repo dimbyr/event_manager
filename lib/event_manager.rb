@@ -24,6 +24,17 @@ def legislators_by_zipcode(zip)
   end
 end
 
+def clean_phone_number(num)
+  num_s = num.to_s
+  if num_s.length == 10
+    num_s
+  elsif num_s == 11 && num_s[0] == '1'
+    num_s[1,10]
+  else 
+    'bad number'
+  end
+end
+
 def save_thank_you_letter(id, form_letter)
   Dir.mkdir('output') unless Dir.exist?('output')
 
@@ -54,6 +65,8 @@ contents.each do |row|
 
   legislators = legislators_by_zipcode(zipcode)
   
+  phone_number = clear_phone_number(row[:homephone])  
+
   form_letter = erb_template.result(binding)
   
   save_thank_you_letter(id, form_letter)
